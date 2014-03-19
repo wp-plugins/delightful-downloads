@@ -75,29 +75,113 @@ function dedo_render_page_settings() {
 	$active_tab = isset( $_GET['tab'] ) ? $_GET['tab'] : 'general'; ?>
 
 	<div class="wrap">
-		<h2 class="nav-tab-wrapper">
+		<h2><?php _e( 'Download Settings', 'delightful-downloads' ); ?></h2>
+		<h3 class="nav-tab-wrapper">
 		<?php 
 			// Generate tabs
 			foreach ( $registered_tabs as $key => $value ) {
 				echo '<a href="edit.php?post_type=dedo_download&page=dedo_settings&tab=' . $key . '" class="nav-tab ' . ( $active_tab == $key ? 'nav-tab-active' : '' ) . '">' . $value . '</a>';
    	 		} 
    	 	?>
-		</h2>
+		</h3>
 		<div id="dedo-settings-main">	
 			<?php if ( isset( $_GET['settings-updated'] ) ) {
 				echo '<div class="updated"><p>' . __( 'Settings updated successfully.', 'delightful-downloads' ) . '</p></div>';
 			} ?>
-			<form action="options.php" method="post">
-				<?php 
-					// Setup fields
-					settings_fields( 'dedo_settings' );
 
-					// Display correct fields
-					do_settings_sections( 'dedo_settings_' . $active_tab );
-					
-					submit_button();
-				?>
-			</form>
+			<?php
+
+			if ( 'support' == $active_tab ) {
+
+global $dedo_options;
+
+// Get current theme data
+$theme = wp_get_theme();
+
+// Get active plugins
+$plugins = get_plugins();
+$active_plugins = get_option( 'active_plugins', array() );
+
+// Prior version
+$prior_version = get_option( 'delightful-downloads-prior-version' );
+?>
+
+<p><?php _e( 'Please include the following information when requesting <a href="http://wordpress.org/support/plugin/delightful-downloads">support</a>.', 'delightful-downloads' ); ?></p>
+<textarea id="dedo_support" readonly>
+
+## Server Information ##
+
+Server: <?php echo $_SERVER['SERVER_SOFTWARE'] . "\n"; ?>
+PHP Version: <?php echo PHP_VERSION . "\n"; ?>
+MySQL Version: <?php echo mysql_get_server_info() . "\n"; ?>
+
+PHP Safe Mode: <?php echo ini_get( 'safe_mode' ) ? "Yes\n" : "No\n"; ?>
+PHP Memory Limit: <?php echo ini_get( 'memory_limit' ) . "\n"; ?>
+PHP Time Limit: <?php echo ini_get( 'max_execution_time' ) . "\n"; ?>
+PHP Max Post Size: <?php echo ini_get( 'post_max_size' ) . "\n"; ?>
+PHP Max Upload Size: <?php echo ini_get( 'upload_max_filesize' ) . "\n"; ?>
+
+
+## WordPress Information ##
+
+WordPress Version: <?php echo get_bloginfo( 'version' ) . "\n"; ?>
+Multisite: <?php echo is_multisite() ? 'Yes' . "\n" : 'No' . "\n" ?>
+Max Upload Size: <?php echo dedo_format_filesize( wp_max_upload_size() ) . "\n"; ?>
+
+Site Address: <?php echo home_url() . "\n"; ?>
+WordPress Address: <?php echo site_url() . "\n"; ?>
+Download Address: <?php echo dedo_download_link( 1 ) . "\n"; ?>
+
+
+## Active Theme ## 
+
+<?php echo $theme->Name . " " . $theme->Version . "\n"; ?>
+
+
+## Active Plugins ##			
+
+<?php 
+foreach ( $plugins as $key => $value ) {
+	
+	if ( in_array( $key, $active_plugins ) ) {
+		echo $value['Name'] . ' ' . $value['Version'] . "\n";
+	}
+	
+}
+?>
+
+
+## Delightful Downloads Information ##
+
+Version: <?php echo DEDO_VERSION . "\n"; ?>
+Prior Version: <?php echo $prior_version . "\n"; ?>
+
+<?php
+
+foreach ( $dedo_options as $key => $value ) {
+	echo $key . ": " . str_replace( "\n", "\t", $value ) . "\n";
+}
+
+?>
+</textarea> <?php
+
+			}
+			else { ?>
+
+				<form action="options.php" method="post">
+					<?php 
+						// Setup fields
+						settings_fields( 'dedo_settings' );
+
+						// Display correct fields
+						do_settings_sections( 'dedo_settings_' . $active_tab );
+						
+						submit_button();
+
+			} ?>
+
+				</form>
+			
 		</div>
 	</div>
 	<?php
@@ -319,6 +403,23 @@ function dedo_settings_download_url_field() {
 
 	echo '<input type="text" name="delightful-downloads[download_url]" value="' . esc_attr( $text ) . '" class="regular-text" />';
 	echo '<p class="description">' . __( 'Set the URL for download links. This should be left as the default value, unless absolutely sure that it will not cause conflicts with existing permalinks or plugins.', 'delightful-downloads' ) . ' <code>' . dedo_download_link( 123 ) . '</code></p>';
+}
+
+/**
+ * Render Uninstall field
+ *
+ * @since  1.3.6
+ */
+function dedo_settings_uninstall_field() {
+	global $dedo_options;
+
+	$checked = absint( $dedo_options['uninstall'] );
+
+	echo '<label for="delightful-downloads[unistall]">';
+	echo '<input type="checkbox" name="delightful-downloads[uninstall]" value="1" ' . checked( $checked, 1, false ) . ' /> ';
+	echo __( 'Enable', 'delightful-downloads' );
+	echo '</label>';
+	echo '<p class="description">' . __( sprintf( 'Check this option to completely remove all data associated with Delightful Downloads when deleting the plugin. All downloads, categories, tags, logs and statistics will be removed. The uploaded files will remain in the %s directory.', '<code>wp-content/uploads/delightful-downloads</code>' ), 'delightful-downloads' ) . '</p>';
 }
 
 /**

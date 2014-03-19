@@ -20,7 +20,8 @@ function dedo_get_tabs() {
 		'general'		=>	__( 'General', 'delightful-downloads' ),
 		'shortcodes'	=>	__( 'Shortcodes', 'delightful-downloads' ),
 		'statistics'	=>	__( 'Statistics', 'delightful-downloads' ),
-		'advanced'		=>	__( 'Advanced', 'delightful-downloads' )
+		'advanced'		=>	__( 'Advanced', 'delightful-downloads' ),
+		'support'		=>	__( 'Support', 'delightful-downloads' )
 	);
 
 	return $tabs;
@@ -104,6 +105,12 @@ function dedo_get_options() {
 			'tab'		=> 'advanced',
 			'type'		=> 'text',
 			'default'	=> 'ddownload',
+		),
+		'uninstall'		=> array(
+			'name'		=> __( 'Complete Uninstall', 'delightful-downloads' ),
+			'tab'		=> 'advanced',
+			'type'		=> 'check',
+			'default'	=> '0',
 		)
 	);
 
