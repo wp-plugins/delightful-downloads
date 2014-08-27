@@ -3,8 +3,8 @@ Contributors: A5hleyRich
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=95AQB5DP83XAU
 Tags: download, manager, downloads, monitor, shortcode, delightful downloads, file, counter, tracking
 Requires at least: 3.9.1
-Tested up to: 3.9.1
-Stable tag: 1.5.1
+Tested up to: 4.0
+Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -76,6 +76,14 @@ Please refer to the [FAQ](http://delightfulwp.com/delightful-downloads/faq/ "Del
 6. Settings screen.
 
 == Changelog ==
+
+= 1.5.2 =
+
+* Enhancement: New shortcode generator window.
+* Enhancement: The front-end CSS is now only loaded when the [ddownload] shortcode is detected.
+* Enhancement: Langauges updated.
+* Bug Fix: Dramatic performance increase within the WordPress admin area.
+* Bug Fix: Upgrades no longer fire on plugin activation.
 
 = 1.5.1 =
 
@@ -260,6 +268,11 @@ Please refer to the [FAQ](http://delightfulwp.com/delightful-downloads/faq/ "Del
 * Initial stable plugin release.
 
 == Upgrade Notice ==
+
+= 1.5.2 =
+
+* Bug fixes.
+* Compatibility with WordPress 4.0.
 
 = 1.5.1 =
 

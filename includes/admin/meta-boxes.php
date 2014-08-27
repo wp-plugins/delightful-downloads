@@ -201,7 +201,7 @@ function dedo_meta_box_download( $post ) {
 							<label for="open_browser_true"><input name="open_browser" id="open_browser_true" type="radio" value="1" <?php echo ( 1 === $open_browser ) ? 'checked' : ''; ?> /> <?php _e( 'Yes', 'delightful-downloads' ); ?></label>
 							<label for="open_browser_false"><input name="open_browser" id="open_browser_false" type="radio" value="0" <?php echo ( 0 === $open_browser ) ? 'checked' : ''; ?> /> <?php _e( 'No', 'delightful-downloads' ); ?></label>
 							<label for="open_browser_inherit"><input name="open_browser" id="open_browser_inherit" type="radio" value <?php echo ( '' === $open_browser ) ? 'checked' : ''; ?> /> <?php _e( 'Inherit', 'delightful-downloads' ); ?></label>
-							<p class="description"><?php _e( sprintf( 'This file will attempt to open in the browser window. If the file is located within the Delightful Downloads upload directory, you will need to set the %sfolder protection%s setting to \'No\'.', '<a href="' . admin_url( 'edit.php?post_type=dedo_download&page=dedo_settings&tab=advanced' ) . '" target="_blank">', '</a>' ), 'delightful-downloads' ); ?></p>
+							<p class="description"><?php echo sprintf( __( 'This file will attempt to open in the browser window. If the file is located within the Delightful Downloads upload directory, you will need to set the %sfolder protection%s setting to \'No\'.', 'delightful-downloads' ), '<a href="' . admin_url( 'edit.php?post_type=dedo_download&page=dedo_settings&tab=advanced' ) . '" target="_blank">', '</a>' ); ?></p>
 						</td>
 					</tr>
 				</tbody>
@@ -223,18 +223,16 @@ function dedo_meta_box_download( $post ) {
 		<a href="#" class="dedo-modal-close" title="Close"><span class="media-modal-icon"></span></a>
 		<div id="dedo-upload-container" class="dedo-modal-content">
 			<h1><?php _e( 'Upload File', 'delightful-downloads' ); ?></h1>
-			<div id="dedo-drag-drop-area">
-				<p class="drag-drop-info"><?php _e( 'Drop file here', 'delightful-downloads' ); ?></p>
-				<p><?php _e( 'or', 'delightful-downloads' ); ?></p>
-				<p class="drag-drop-button"><input id="dedo-upload-button" type="button" value="<?php _e( 'Select File', 'delightful-downloads' ); ?>" class="button" />
-			</div>
-			<p><?php printf( __( 'Maximum upload file size: %s.', 'delightful-downloads' ), size_format( wp_max_upload_size(), 1 ) ); ?></p>
-			<div class="dedo-progress-wrapper">
-				<div id="dedo-progress-bar" style="display: none">
+			<div id="dedo-drag-drop-area-container">
+				<div id="dedo-drag-drop-area">
+					<p class="drag-drop-info"><?php _e( 'Drop file here', 'delightful-downloads' ); ?></p>
+					<p><?php _e( 'or', 'delightful-downloads' ); ?></p>
+					<p class="drag-drop-button"><input id="dedo-upload-button" type="button" value="<?php _e( 'Select File', 'delightful-downloads' ); ?>" class="button" />
 					<div id="dedo-progress-percent" style="width: 0%;"></div>
 					<div id="dedo-progress-text">0%</div>
 				</div>
 			</div>
+			<p><?php printf( __( 'Maximum upload file size: %s.', 'delightful-downloads' ), size_format( wp_max_upload_size(), 1 ) ); ?></p>
 			<div id="dedo-progress-error" style="display: none"></div>
 		</div>
 	</div>
@@ -247,7 +245,7 @@ function dedo_meta_box_download( $post ) {
 		<a href="#" class="dedo-modal-close" title="Close"><span class="media-modal-icon"></span></a>
 		<div class="dedo-modal-content">
 			<h1><?php _e( 'Existing File', 'delightful-downloads' ); ?></h1>
-			<p><?php _e( 'Manaully enter a file URL, or use the file browser.', 'delightful-downloads' ); ?></p>
+			<p><?php _e( 'Manually enter a file URL, or use the file browser.', 'delightful-downloads' ); ?></p>
 			<p>	
 				<?php wp_nonce_field( 'ddownload_file_save', 'ddownload_file_save_nonce' ); ?>
 				<input name="dedo-file-url" id="dedo-file-url" type="text" class="large-text" value="<?php echo $file_url; ?>" placeholder="<?php _e( 'File URL or path...', 'delightful-downloads' ); ?>" />

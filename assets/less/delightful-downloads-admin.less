@@ -1,137 +1,56 @@
-/* Download Modal Window */
-#dedo-download-modal .media-modal-content .media-frame-title {
-	position: absolute;
-	top: 0;
-	left: 0;
-	right: 0;
-	height: 45px;
-	border-bottom: 1px solid #dfdfdf;
-	box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.1);
-	z-index: 200;
-}
+/* Shortcode Modal Window */
+#dedo-shortcode-modal .dedo-modal-content {
 
-.media-modal-content .left-panel {
-	position: absolute;
-	top: 45px;
-	bottom: 0;
-	width: 100%;
-	overflow: hidden;
-}
+	h1 {
+		margin-bottom: 24px;
+	}
 
-.media-modal-content .right-panel {
-	position: absolute;
-	top: 45px;
-	right: 0;
-	bottom: 0;
-	width: 267px;
-	padding: 20px 16px;
-	border-left: 1px solid #dfdfdf;
-	background-color: whiteSmoke;
-	overflow: auto;
-}
+	p {
+		font-size: 13px;
+		color: #333;
+	}
 
-.dedo-download-toolbar {
-	position: absolute;
-	top: 0;
-	right: 300px;
-	bottom: 0;
-	left: 0;
-	margin: 20px;
-	overflow: auto;
-}
+	p.clear:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 
-.dedo-download-toolbar input[type="search"] {
-	float: right;
-	font-family: sans-serif;
-	font-size: 12px;
-	padding: 4px;
-	line-height: 18px;	
-}
+	label.column-2 {
+		display: block;
+		box-sizing: border-box;
+		float: left;
+		width: 50%;
+	}
 
-.dedo-download-list {
-	position: absolute;
-	top: 50px;
-	right: 300px;
-	bottom: 0;
-	left: 0;
-	margin: 20px;
-	overflow: auto;
-}
+	label.column-2:nth-child(1) {
+		padding-right: 10px;
+	}
 
-.dedo-download-list td {
-	padding-top: 12px;
-	padding-bottom: 12px;
-}
+	label.column-2:nth-child(2) {
+		padding-left: 10px;
+	}
 
-.dedo-download-list tr:nth-child(even) {
-	background-color: #f9f9f9;
-}
+	label span {
+		line-height: 24px;
+	}
 
-.dedo-download-list tr.ui-selectee {
-	cursor: pointer;
-}
+	input {
+		display: block;
+		width: 100%;
+		border: 1px solid #aaa;
+	}
 
-.dedo-download-list tr.ui-selected {
-	background-color: rgba(30, 140, 190, .2);
-}
+	.buttons {
+		margin: 24px -16px 0;
+		padding: 12px 16px;
+		border-top: 1px solid #ddd;
+		background: #fcfcfc;
 
-.right-panel .download-details h3 {
-	margin: 0 0 8px;
-	font-weight: bold;
-	text-transform: uppercase;
-	font-size: 12px;
-	color: #777;
-	text-shadow: 0 1px 0 white;	
-}
-
-.right-panel .download-details .meta {
-	margin-bottom: 16px;
-	padding-bottom: 11px;
-	border-bottom: 1px solid #e5e5e5;
-	box-shadow: 0 1px 0 #fff;
-	color: #464646;
-}
-
-.right-panel .download-details .meta div {
-	color: #999;
-	line-height: 18px;
-}
-
-.right-panel .download-details .meta strong {
-	color: #000;
-}
-
-.right-panel .download-details label {
-	display: block;
-	margin: 10px 0 5px;
-	color: #999;
-}
-
-.right-panel .download-details input[type=text] {
-	display: block;
-	width: 100%;
-	padding: 6px 8px;
-}
-
-.right-panel .download-details select {
-	display: block;
-	margin: 0 auto;
-	width: 100%;
-}
-
-.right-panel .download-details #dedo-download-button {
-	margin-top: 30px;
-}
-
-.right-panel .download-details .button, .right-panel .download-details .button-primary {
-	display: block;
-	margin: 0 auto;
-	width: 100%;
-	height: auto;
-	margin-top: 10px;
-	padding: 10px 0;
-	font-size: 16px;
-	text-align: center;
+		a {
+			margin-right: 5px;
+		}
+	}
 }
 
 /* All Downloads
@@ -709,10 +628,23 @@
 /* Upload Modal */
 #dedo-upload-modal {
 
-	#dedo-drag-drop-area {
+	#dedo-drag-drop-area-container {
+		position: relative;
+		display: table;
+		width: 100%;
 		margin-top: 1em;
-		padding: 40px;
+	}
+
+	#dedo-drag-drop-area {
+		display: table-cell;
+		height: 200px;
 		border: 4px dashed #bbb;
+		vertical-align: middle;
+		-webkit-transition: all .5s ease;
+		-moz-transition: all .5s ease;
+		-o-transition: all .5s ease;
+		-ms-transition: all .5s ease;
+		transition: all .5s ease;
 
 		p {
 			margin: 5px 0;
@@ -724,32 +656,42 @@
 		.drag-drop-info {
 			font-size: 20px;
 		}
+
+		#dedo-progress-percent {
+			display: none;
+			position: absolute;
+			top: 0;
+			left: 0;
+			bottom: 0;
+			background: #000;
+			opacity: .5;
+		}
+
+		#dedo-progress-text {
+			display: none;
+			width: 100%;
+			font-size: 48px;
+			line-height: 1;
+			text-align: center;
+		}
 	}
-}
 
-/* Progress Bar */
-#dedo-progress-bar {
-	position: relative;
-	margin: 13px 0;
-	width: 100%;
-	height: 60px;
-	background: #fcfcfc;
-	border: 1px solid #000;
+	/* Progress Bar */
+	#dedo-drag-drop-area.uploading {
+		height: 100px;
+		border: 4px solid #bbb;
+	
+		p {
+			display: none;
+		}
 
-	#dedo-progress-percent {
-		background: #000;
-		height: 60px;
-		opacity: .5;
-	}
+		#dedo-progress-percent {
+			display: block;
+		}
 
-	#dedo-progress-text {
-		position: absolute;
-		top: 0;
-		width: 100%;
-		height: 60px;
-		font-size: 20px;
-		line-height: 60px;
-		text-align: center;
+		#dedo-progress-text {
+			display: block;
+		}
 	}
 }
 
@@ -788,151 +730,135 @@
 /* Fresh (Default) */	
 .admin-color-fresh {
 
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #04a4cc;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #04a4cc;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #04a4cc;
+		#dedo-progress-percent {
+			background: #04a4cc;
+		}
 	}
 }
 
 /* Light */	
 .admin-color-light {
 
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #04a4cc;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #04a4cc;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #04a4cc;
+		#dedo-progress-percent {
+			background: #04a4cc;
+		}
 	}
 }
 
 /* Blue */	
 .admin-color-blue {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(219, 152, 37, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #52accc;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #52accc;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #52accc;
+		#dedo-progress-percent {
+			background: #52accc;
+		}
 	}
 }
 
 /* Coffee */	
 .admin-color-coffee {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(199, 165, 137, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #c7a589;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #c7a589;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #c7a589;
+		#dedo-progress-percent {
+			background: #c7a589;
+		}
 	}
 }
 
 /* Ectoplasm */	
 .admin-color-ectoplasm {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(137, 153, 58, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #a3b745;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #a3b745;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #a3b745;
+		#dedo-progress-percent {
+			background: #a3b745;
+		}
 	}
 }
 
 /* Midnight */	
 .admin-color-midnight {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(217, 44, 35, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #e14d43;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #e14d43;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #e14d43;
+		#dedo-progress-percent {
+			background: #e14d43;
+		}
 	}
 }
 
 /* Ocean */	
 .admin-color-ocean {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(158, 186, 160, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #9ebaa0;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #9ebaa0;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #9ebaa0;
+		#dedo-progress-percent {
+			background: #9ebaa0;
+		}
 	}
 }
 
 /* Sunrise */	
 .admin-color-sunrise {
 
-	.dedo-download-list tr.ui-selected {
-		background-color: rgba(221, 130, 59, .2);
-	}
-
-	#ddownload-count .count {
+	#ddownload-count .count,
+	#dedo-upload-modal #dedo-drag-drop-area #dedo-progress-text {
 		color: #dd823b;
 	}
 
-	#dedo-progress-bar {
+	#dedo-upload-modal #dedo-drag-drop-area.uploading {
 		border-color: #dd823b;
-	}
 
-	#dedo-progress-bar #dedo-progress-percent {
-		background: #dd823b;
+		#dedo-progress-percent {
+			background: #dd823b;
+		}
 	}
 }
