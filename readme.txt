@@ -1,9 +1,9 @@
 === Delightful Downloads ===
 Contributors: A5hleyRich
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=95AQB5DP83XAU
+Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=S6KBW2ZSVZ8RE
 Tags: download, manager, downloads, monitor, shortcode, delightful downloads, file, counter, tracking
-Requires at least: 3.9.1
-Tested up to: 4.0
+Requires at least: 4.1
+Tested up to: 4.1
 Stable tag: 1.5.2
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -52,6 +52,10 @@ The Delightful Downloads documentation can be found [here](http://delightfulwp.c
 **Requirements**
 
 To add and manage downloads via the WordPress Administration screens, you must have a [modern web browser](http://browsehappy.com/ "Browse Happy") with JavaScript enabled.
+
+**GitHub**
+
+If you would like to contribute to the plugin, you can do so on [GitHub](https://github.com/A5hleyRich/Delightful-Downloads).
 
 == Installation ==
 
